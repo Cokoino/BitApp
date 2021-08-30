@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-fab": "/components/uni-fab/uni-fab"
+  }
+}

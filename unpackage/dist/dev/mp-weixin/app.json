@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cobit/cobit",
+    "pages/bearCar/bearCar",
+    "pages/balanceCar/balanceCar",
+    "pages/readme/readme"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#007AFF",
+    "backgroundColor": "#007AFF"
+  },
+  "usingComponents": {}
+}

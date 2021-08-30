@@ -1,0 +1,36 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle":"custom" //单独页面去除原生导航栏
+			}
+		}
+	    ,{
+            "path" : "pages/Car/Car",
+            "style" : {
+				"navigationStyle":"custom" //单独页面去除原生导航栏
+			}
+        }
+        ,{
+            "path" : "pages/Car_Claw/Car_Claw",
+            "style" : {
+				"navigationStyle":"custom" //单独页面去除原生导航栏
+			}
+        }
+        ,{
+            "path" : "pages/readme/readme",
+            "style" : {
+				"navigationBarTitleText": "ME"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#007AFF",
+		//设定屏幕方向
+		"pageOrientation": "landscape"   //auto/portrait/landscape
+	}
+}
