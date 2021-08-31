@@ -8,9 +8,10 @@ uni api使用方法：
 6、依据特性id的作用进行编写特定功能的程序
 
 兼容蓝牙设备：
-1、micro:bit蓝牙串口服务，参考链接https://lancaster-university.github.io/microbit-docs/ble/uart-service/
+1、micro:bit v1蓝牙串口服务，参考链接https://lancaster-university.github.io/microbit-docs/ble/uart-service/
    服务-serviceid : 6E400001-B5A3-F393-E0A9-E50E24DCCA9E  //必须要micro:bit蓝牙编程开启串口服务才搜索的得到
    特征-nitifyId  : false
+   特征-readId   : 6E400002-B5A3-F393-E0A9-E50E24DCCA9E
    特征-writeId   : 6E400003-B5A3-F393-E0A9-E50E24DCCA9E
 2、济南华茂HM-10C-A串口服务，参考链接http://www.huamaosoft.com/bluetooth.asp?id=0
    服务-serviceid : 0000FFE0-0000-1000-8000-00805F9B34FB

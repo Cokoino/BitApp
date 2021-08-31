@@ -9,7 +9,7 @@
 			compass format: 0xff-dataX-dataY-dataZ-0x14-0xff
 				data > 100 : real data = -(data-100)/10
 				data < 100 : real data = data/10
-			compatibility: Micro:bit\HM-10
+			compatibility: Micro:bit V1\HM-10
 			
 			revision record:
 			-----------------------------
