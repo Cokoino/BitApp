@@ -84,7 +84,7 @@
 						<view class="controlButton" hover-class="hover" hover-start-time=5 hover-stay-time=100 @click="BLEsend(14)">
 							<image class="Image" src="/static/button/button_on.png"></image>
 						</view>
-						<view class="controlButton" hover-class="hover" hover-start-time=5 hover-stay-time=100 @click="compass">
+						<view class="controlButton" hover-class="hover" hover-start-time=5 hover-stay-time=100 @click="accelerometer">
 							<image class="Image" src="/static/button/xyz.png"></image>
 						</view>
 					</view>
@@ -189,20 +189,17 @@
 			let self = this;
 			uni.startAccelerometer();                   //开始监听加速度数据
 			uni.onAccelerometerChange(function (res) {  //监听加速度数据,重复调用会生成多个监听对象
-				//限制数据在-125与+125之间,保留小数点后1位数据
-			    self.x = (Math.round(res.x*10)/10) > 10 ? 10 : (Math.round(res.x*10)/10);  
-				self.x = (Math.round(res.x*10)/10) < -10 ? -10 : (Math.round(res.x*10)/10);
-				self.y = (Math.round(res.y*10)/10) > 10 ? 10 : (Math.round(res.y*10)/10);  
-				self.y = (Math.round(res.y*10)/10) < -10 ? -10 : (Math.round(res.y*10)/10);
-				self.z = (Math.round(res.z*10)/10) > 10 ? 10 : (Math.round(res.z*10)/10);  
-				self.z = (Math.round(res.z*10)/10) < -10 ? -10 : (Math.round(res.z*10)/10);
+				//限制数据在-10与+10之间,保留小数点后1位数据
+			    self.x = res.x > 10 ? 10 : res.x < -10 ? -10 : (Math.round(res.x*10)/10);  
+				self.y = res.y > 10 ? 10 : res.y < -10 ? -10 : (Math.round(res.y*10)/10);  
+				self.z = res.z > 10 ? 10 : res.z < -10 ? -10 : (Math.round(res.z*10)/10);  
 			    if(bluetooth.connectFlag){
 					//丢掉重复的数据
-					if((self.x != BleArrayBuffer[1]) || (self.y != BleArrayBuffer[2]) || (self.z != BleArrayBuffer[3])){
+					//if((self.x != BleArrayBuffer[1]) || (self.y != BleArrayBuffer[2]) || (self.z != BleArrayBuffer[3])){
 						// 向蓝牙设备发送数据: 0xff, x, y, z, 0x14, 0xff
 						BleArrayBuffer = [];
 						BleArrayBuffer[0] = 0xff;
-						//数据如果为负数就乘以10加上100，当设备接收端获得大于100的数据就减100再除以10，然后再转为负值得到原始数据
+						//数据如果为负数就取模乘以10加上100，当设备接收端获得大于100的数据就减100再除以10，然后再转为负值得到原始数据
 						//当数据为正数就直接乘以10，当设备端接收到的数据小于100，就直接除以10即可得到原始数据
 						BleArrayBuffer[1] = self.x < 0 ? (100-(self.x*10)) : self.x*10;
 						BleArrayBuffer[2] = self.y < 0 ? (100-(self.y*10)) : self.y*10;
@@ -210,14 +207,15 @@
 						BleArrayBuffer[4] = 0x14;
 						BleArrayBuffer[5] = 0xff;
 						bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);	
-					}
+					//}
 			    }
 			});
 			uni.stopAccelerometer();  //停止监听加速度数据
 		},
 		//页面卸载时
 		onUnload: function() {
-			uni.stopAccelerometer();  //停止监听加速度数据
+			//uni.stopAccelerometer();     //停止监听加速度数据
+			uni.offAccelerometerChange();  //取消监听加速度数据
 		},
 		methods: {
 			returnClick() {
@@ -247,7 +245,7 @@
 				}
 			},
 			//发送加速度数据
-			compass(){
+			accelerometer(){
 				let self = this;
 				self.displayXYZ = !self.displayXYZ;
 				if(self.displayXYZ){

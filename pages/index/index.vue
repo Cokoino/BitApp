@@ -58,7 +58,7 @@
 				//显示参数
 				displayGoods:[
 					{
-						path: '/static/goods/bear-car.jpg',
+						path: '/static/goods/cobit.jpg',
 					},
 					{
 						path: '/static/goods/robot.jpg',
