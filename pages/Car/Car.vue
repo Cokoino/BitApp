@@ -199,12 +199,12 @@
 						// 向蓝牙设备发送数据: 0xff, x, y, z, 0x14, 0xff
 						BleArrayBuffer = [];
 						BleArrayBuffer[0] = 0xff;
+						BleArrayBuffer[1] = 0x14;
 						//数据如果为负数就取模乘以10加上100，当设备接收端获得大于100的数据就减100再除以10，然后再转为负值得到原始数据
 						//当数据为正数就直接乘以10，当设备端接收到的数据小于100，就直接除以10即可得到原始数据
-						BleArrayBuffer[1] = self.x < 0 ? (100-(self.x*10)) : self.x*10;
-						BleArrayBuffer[2] = self.y < 0 ? (100-(self.y*10)) : self.y*10;
-						BleArrayBuffer[3] = self.z < 0 ? (100-(self.z*10)) : self.z*10; 
-						BleArrayBuffer[4] = 0x14;
+						BleArrayBuffer[2] = self.x < 0 ? (100-(self.x*10)) : self.x*10;
+						BleArrayBuffer[3] = self.y < 0 ? (100-(self.y*10)) : self.y*10;
+						BleArrayBuffer[4] = self.z < 0 ? (100-(self.z*10)) : self.z*10; 
 						BleArrayBuffer[5] = 0xff;
 						bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);	
 					//}
@@ -238,8 +238,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = command;
-					BleArrayBuffer[2] = 0x00;
+					BleArrayBuffer[1] = 0x00;
+					BleArrayBuffer[2] = command;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
@@ -260,8 +260,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = e.detail.value;
-					BleArrayBuffer[2] = 0x0a;
+					BleArrayBuffer[1] = 0x0a;
+					BleArrayBuffer[2] = e.detail.value;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}

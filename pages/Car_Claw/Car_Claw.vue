@@ -104,8 +104,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = command;
-					BleArrayBuffer[2] = 0x00;
+					BleArrayBuffer[1] = 0x00;
+					BleArrayBuffer[2] = command;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
@@ -115,8 +115,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = e.detail.value;
-					BleArrayBuffer[2] = 0x0b;
+					BleArrayBuffer[1] = 0x0b;
+					BleArrayBuffer[2] = e.detail.value;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
@@ -125,8 +125,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = e.detail.value;
-					BleArrayBuffer[2] = 0x0c;
+					BleArrayBuffer[1] = 0x0c;
+					BleArrayBuffer[2] = e.detail.value;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
@@ -135,8 +135,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = e.detail.value;
-					BleArrayBuffer[2] = 0x0d;
+					BleArrayBuffer[1] = 0x0d;
+					BleArrayBuffer[2] = e.detail.value;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
@@ -145,8 +145,8 @@
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
 					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = e.detail.value;
-					BleArrayBuffer[2] = 0x0e;
+					BleArrayBuffer[1] = 0x0e;
+					BleArrayBuffer[2] = e.detail.value;
 					BleArrayBuffer[3] = 0xff;
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}

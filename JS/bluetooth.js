@@ -18,7 +18,7 @@ uni api使用方法：
    特征-nitifyId  : false
    特征-readId   : 
    特征-writeId   : 0000ffe1-0000-1000-8000-00805f9b34fb
-3、济南华茂HM-10C-A串口服务，参考链接http://www.huamaosoft.com/bluetooth.asp?id=0
+3、济南华茂HM-10C-A与JDY-23串口服务，华茂参考链接http://www.huamaosoft.com/bluetooth.asp?id=0
    服务-serviceid : 0000FFE0-0000-1000-8000-00805F9B34FB
    特征-nitifyId  : ture
    特征-writeId   : 0000FFE1-0000-1000-8000-00805F9B34FB
@@ -140,7 +140,8 @@ class Bluetooth {
 						RSSI    : devices.devices[0].RSSI,
 					})
 					//蓝牙自动链接，当手机靠近蓝牙设备达到一定距离时，依据蓝牙名称和RSSI的强度来判断链接蓝牙设备
-					if(devices.devices[0].name === "HMSoft" || devices.devices[0].name === "BBC micro:bit [gavop]"){
+					if(devices.devices[0].name === "HMSoft" || devices.devices[0].name === "BBC micro:bit [gavop]" || 
+					   devices.devices[0].name === "JDY-23"){
 						if(devices.devices[0].RSSI > -48){
 							self.createBLEConnection(devices.devices[0].deviceId);
 						}
@@ -168,7 +169,7 @@ class Bluetooth {
 				//self.stopBluetoothDevicesDiscovery();  //停止蓝牙搜索
 				self.deviceId = deviceId;                //保存成功建立链接的deviceId
 				self.connectFlag = true;                 //蓝牙链接成功标志位
-				//self.showToast("Success", 1000);
+				self.showToast("Success", 1000);
 				console.log("连接成功:" + self.deviceId);
 				setTimeout(() => {                       //必要等待1.5秒以上，否则getBLEDeviceServices为空数据
 					self.onBLEConnectionStateChange()    //监听蓝牙连接状态
