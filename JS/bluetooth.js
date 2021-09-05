@@ -14,10 +14,10 @@ uni api使用方法：
    特征-readId   : 6E400002-B5A3-F393-E0A9-E50E24DCCA9E
    特征-writeId   : 6E400003-B5A3-F393-E0A9-E50E24DCCA9E
 2、micro:bit v2蓝牙串口服务
-   服务-serviceid : 0000ffe0-0000-1000-8000-00805f9b34fb  //必须要micro:bit蓝牙编程开启串口服务才搜索的得到
+   服务-serviceid : 0000FE59-0000-1000-8000-00805F9B34FB  //必须要micro:bit蓝牙编程开启串口服务才搜索的得到
    特征-nitifyId  : false
    特征-readId   : 
-   特征-writeId   : 0000ffe1-0000-1000-8000-00805f9b34fb
+   特征-writeId   : 8EC90004-F315-4F60-9FB8-838830DAEA50
 3、济南华茂HM-10C-A与JDY-23串口服务，华茂参考链接http://www.huamaosoft.com/bluetooth.asp?id=0
    服务-serviceid : 0000FFE0-0000-1000-8000-00805F9B34FB
    特征-nitifyId  : ture
@@ -55,7 +55,7 @@ class Bluetooth {
 		this.BtServiceId = {
 			HMsoftServiceId : "0000FFE0-0000-1000-8000-00805F9B34FB",
 			MicrobitV1ServiceId : "6E400001-B5A3-F393-E0A9-E50E24DCCA9E",
-			MicrobitV2ServiceId : "0000ffe0-0000-1000-8000-00805f9b34fb"
+			MicrobitV2ServiceId : "0000FE59-0000-1000-8000-00805F9B34FB",
 		};
 	}
 	//弹窗口显示信息
@@ -216,6 +216,7 @@ class Bluetooth {
 			success: res => {
 				//uni.hideLoading();
 				for (var s = 0; s < res.services.length; s++) {
+					//console.log("获取设备ServiceId成功:" + res.services[s].uuid);
 					//判断是否为我们定义需要的serviceId
 					if(self.BtServiceId.HMsoftServiceId === res.services[s].uuid ||
 					   self.BtServiceId.MicrobitV1ServiceId === res.services[s].uuid ||
@@ -248,6 +249,7 @@ class Bluetooth {
 				deviceId : deviceId,
 				serviceId : serviceId,
 				success: res => {
+					self.showToast("Bluetooth ok", 1000);
 					for (let _obj of res.characteristics) {
 						if (_obj.properties.write) {    //获取writeId
 							self.writeId = _obj.uuid;   //保存串口writeId

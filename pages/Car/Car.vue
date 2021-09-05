@@ -215,7 +215,7 @@
 		//页面卸载时
 		onUnload: function() {
 			//uni.stopAccelerometer();     //停止监听加速度数据
-			uni.offAccelerometerChange();  //取消监听加速度数据
+			uni.offAccelerometerChange(function (res){});  //取消监听加速度数据
 		},
 		methods: {
 			returnClick() {
