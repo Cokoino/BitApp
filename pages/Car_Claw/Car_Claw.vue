@@ -103,10 +103,14 @@
 			BLEsend(command) {
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
-					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = 0x00;
-					BleArrayBuffer[2] = command;
-					BleArrayBuffer[3] = 0xff;
+					BleArrayBuffer[0] = 83;    //ascii表对应'S'
+					BleArrayBuffer[1] = 48;    //BleArrayBuffer[1-3] = "000" --> 0x00 = button
+					BleArrayBuffer[2] = 48;    //48应对ascii值为0
+					BleArrayBuffer[3] = 48;
+					BleArrayBuffer[4] = parseInt(command/100)+48;    //BleArrayBuffer[4-6] = data --> sensor data
+					BleArrayBuffer[5] = parseInt(command%100/10)+48;
+					BleArrayBuffer[6] = command%10+48;
+					BleArrayBuffer[7] = 80;   //ascii表对应'P'
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
 			},
@@ -114,40 +118,56 @@
 			sliderChange1(e){
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
-					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = 0x0b;
-					BleArrayBuffer[2] = e.detail.value;
-					BleArrayBuffer[3] = 0xff;
+					BleArrayBuffer[0] = 83;    //ascii表对应'S'
+					BleArrayBuffer[1] = 48;    //BleArrayBuffer[1-3] = "011" --> 0xb = slider data
+					BleArrayBuffer[2] = 1+48;  //48应对ascii值为0
+					BleArrayBuffer[3] = 1+48;
+					BleArrayBuffer[4] = parseInt(e.detail.value/100)+48;    //BleArrayBuffer[4-6] = data --> sensor data
+					BleArrayBuffer[5] = parseInt(e.detail.value%100/10)+48;
+					BleArrayBuffer[6] = e.detail.value%10+48;
+					BleArrayBuffer[7] = 80;   //ascii表对应'P'
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
 			},
 			sliderChange2(e){
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
-					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = 0x0c;
-					BleArrayBuffer[2] = e.detail.value;
-					BleArrayBuffer[3] = 0xff;
+					BleArrayBuffer[0] = 83;    //ascii表对应'S'
+					BleArrayBuffer[1] = 48;    //BleArrayBuffer[1-3] = "012" --> 0x0c = slider data
+					BleArrayBuffer[2] = 1+48;  //48应对ascii值为0
+					BleArrayBuffer[3] = 2+48;
+					BleArrayBuffer[4] = parseInt(e.detail.value/100)+48;    //BleArrayBuffer[4-6] = data --> sensor data
+					BleArrayBuffer[5] = parseInt(e.detail.value%100/10)+48;
+					BleArrayBuffer[6] = e.detail.value%10+48;
+					BleArrayBuffer[7] = 80;   //ascii表对应'P'
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
 			},
 			sliderChange3(e){
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
-					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = 0x0d;
-					BleArrayBuffer[2] = e.detail.value;
-					BleArrayBuffer[3] = 0xff;
+					BleArrayBuffer[0] = 83;    //ascii表对应'S'
+					BleArrayBuffer[1] = 48;    //BleArrayBuffer[1-3] = "013" --> 0x0d = slider data
+					BleArrayBuffer[2] = 1+48;  //48应对ascii值为0
+					BleArrayBuffer[3] = 3+48;
+					BleArrayBuffer[4] = parseInt(e.detail.value/100)+48;    //BleArrayBuffer[4-6] = data --> sensor data
+					BleArrayBuffer[5] = parseInt(e.detail.value%100/10)+48;
+					BleArrayBuffer[6] = e.detail.value%10+48;
+					BleArrayBuffer[7] = 80;   //ascii表对应'P'
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
 			},
 			sliderChange4(e){
 				if(bluetooth.connectFlag){
 					BleArrayBuffer = [];
-					BleArrayBuffer[0] = 0xff;
-					BleArrayBuffer[1] = 0x0e;
-					BleArrayBuffer[2] = e.detail.value;
-					BleArrayBuffer[3] = 0xff;
+					BleArrayBuffer[0] = 83;    //ascii表对应'S'
+					BleArrayBuffer[1] = 48;    //BleArrayBuffer[1-3] = "014" --> 0x0e = slider data
+					BleArrayBuffer[2] = 1+48;  //48应对ascii值为0
+					BleArrayBuffer[3] = 4+48;
+					BleArrayBuffer[4] = parseInt(e.detail.value/100)+48;    //BleArrayBuffer[4-6] = data --> sensor data
+					BleArrayBuffer[5] = parseInt(e.detail.value%100/10)+48;
+					BleArrayBuffer[6] = e.detail.value%10+48;
+					BleArrayBuffer[7] = 80;   //ascii表对应'P'
 					bluetooth.writeBLECharacteristicValueArray(BleArrayBuffer);
 				}
 			}
